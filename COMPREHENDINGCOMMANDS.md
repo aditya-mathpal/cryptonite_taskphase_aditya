@@ -24,14 +24,14 @@ Create the required files with `touch pwn college`, then run `/challenge/run`.
 
 # An Epic Filesystem Quest
 `cd` into `/` since that's step 0.
-Use `ls -a`, no hidden files but one named `DISPATCH` which contains a directory (`/usr/share/racket/pkgs/srfi-lib/srfi/64`) to the next clue.
-`cd` over to that directory, `ls -a` reveals a file named `GIST`, it contains the directory (`/opt/angr-management/_internal/pypcode/processors/MC6800/data/languages`) to the next clue.
-Over there exists a file named `POINTER`, contains a directory (`/opt/pwndbg/.venv/lib/python3.8/site-packages/rpyc-6.0.0.dist-info`) where the clue will not be readable until I enter the directory with `cd`.
-So that's what I do, find a few files, `NUGGET` contained the next directory (`/usr/local/lib/python3.8/dist-packages/platformdirs-4.3.3.dist-info/licenses`) to the clue (found it first try, then wasted time checking the other files). This directory contains a hidden file.
-`ls -a` reveals `.EVIDENCE`, contains directory `/opt/pwndbg/.venv/lib/python3.8/site-packages/pip/_vendor/resolvelib/compat`, which I cannot `cd` into, else the clue will self-destruct.
+Use `ls -a`, no hidden files but one named `DISPATCH` which contains a directory (`/usr/share/racket/pkgs/srfi-lib/srfi/64`) to the next clue.  
+`cd` over to that directory, `ls -a` reveals a file named `GIST`, it contains the directory (`/opt/angr-management/_internal/pypcode/processors/MC6800/data/languages`) to the next clue.  
+Over there exists a file named `POINTER`, contains a directory (`/opt/pwndbg/.venv/lib/python3.8/site-packages/rpyc-6.0.0.dist-info`) where the clue will not be readable until I enter the directory with `cd`.  
+So that's what I do, find a few files, `NUGGET` contained the next directory (`/usr/local/lib/python3.8/dist-packages/platformdirs-4.3.3.dist-info/licenses`) to the clue (found it first try, then wasted time checking the other files). This directory contains a hidden file.  
+`ls -a` reveals `.EVIDENCE`, contains directory `/opt/pwndbg/.venv/lib/python3.8/site-packages/pip/_vendor/resolvelib/compat`, which I cannot `cd` into, else the clue will self-destruct.  
 Use `ls /opt/pwndbg/.venv/lib/python3.8/site-packages/pip/_vendor/resolvelib/compat` to find the file `ALERT-TRAPPED`, then `cat /opt/pwndbg/.venv/lib/python3.8/site-packages/pip/_vendor/resolvelib/compat/ALERT-TRAPPED` to get the next directory, `/opt/linux/linux-5.4/drivers/target/iscsi/cxgbit` which I again cannot `cd` into.
-Same process, `ls /opt/linux/linux-5.4/drivers/target/iscsi/cxgbit` reveals `MEMO-TRAPPED`, `cat /opt/linux/linux-5.4/drivers/target/iscsi/cxgbit/MEMO-TRAPPED` reveals directory `/opt/linux/linux-5.4/arch/sh/include/cpu-sh2a/cpu`.
-Repeat same steps, find directory `/usr/local/share/afl/testcases/multimedia`, where the clue only becomes readable once the directory is `cd`ed into.
+Same process, `ls /opt/linux/linux-5.4/drivers/target/iscsi/cxgbit` reveals `MEMO-TRAPPED`, `cat /opt/linux/linux-5.4/drivers/target/iscsi/cxgbit/MEMO-TRAPPED` reveals directory `/opt/linux/linux-5.4/arch/sh/include/cpu-sh2a/cpu`.  
+Repeat same steps, find directory `/usr/local/share/afl/testcases/multimedia`, where the clue only becomes readable once the directory is `cd`ed into.  
 The directory contains a file `LEAD`, which contains the flag.
 
 # making directories
@@ -54,12 +54,12 @@ Possible locations:
 6: /nix/store/1yagn5s8sf7kcs2hkccgf8d0wxlrv5sz-radare2-5.9.0/share/radare2/5.9.0/flag
 7: /nix/store/pmvk2bk4p550w182rjfm529kfqddnvh3-python3.11-pwntools-4.12.0/lib/python3.11/site-packages/pwnlib/flag
 ```
-1 contains `flag.py`, not permitted to run it.
-2 contains `tags.r2`, not permitted to run it.
-3: not permitted to run.
-4 contains `flag.py`, not permitted to run it.
-5 contains multiple files, not permitted to run any.
-6, 7 contain `tags.r2`, not permitted to run it.
+1 contains `flag.py`, not permitted to run it.  
+2 contains `tags.r2`, not permitted to run it.  
+3: not permitted to run.  
+4 contains `flag.py`, not permitted to run it.  
+5 contains multiple files, not permitted to run any.  
+6, 7 contain `tags.r2`, not permitted to run it.  
 
 Retry 3 with `cat`, file contains the flag.
 
